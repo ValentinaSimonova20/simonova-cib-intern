@@ -9,7 +9,7 @@ import javax.validation.constraints.Positive;
 
 
 /**
- * Класс клиенты бизнес-центра
+ * Класс носки
  */
 @Entity
 @Table(name = "socks")
