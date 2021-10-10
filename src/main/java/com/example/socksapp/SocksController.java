@@ -60,14 +60,13 @@ public class SocksController {
     @PostMapping(value = "/api/socks/outcome",produces = "text/plain;charset=UTF-8")
     public ResponseEntity<String> outcomeSocks(@Valid @RequestBody Socks socks){
         Optional<Socks> existsSocks = sockRepository.findByColorAndCottonPart(socks.getColor(), socks.getCottonPart());
-        String mes = "Удалось отпустить носки";
         if(existsSocks.isPresent() && existsSocks.get().getQuantity() >= socks.getQuantity()){
             existsSocks.get().setQuantity(existsSocks.get().getQuantity() - socks.getQuantity());
             sockRepository.save(existsSocks.get());
-        }else {
-            mes = "Требуемых носков нет в системе или указанное кол-во носков больше имеющегося";
+            return new ResponseEntity<>("Удалось отпустить носки", HttpStatus.OK);
         }
-        return new ResponseEntity<>(mes, HttpStatus.OK);
+        return new ResponseEntity<>("Требуемых носков нет в системе или указанное кол-во носков больше имеющегося",
+                HttpStatus.BAD_REQUEST);
         }
 
     /**
