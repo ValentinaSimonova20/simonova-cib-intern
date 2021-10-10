@@ -3,6 +3,8 @@
 
 Схема базы данных находится в файле database_socks.png
 
+Liquibase скрипт: simonova-cib-intern/src/main/resources/db/changelog/db.changelog-master.yaml
+
  Таблица socks заполнена:<br>
  <table>
   <tr>
